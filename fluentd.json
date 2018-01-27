@@ -1,0 +1,35 @@
+{
+  "kind": "DeploymentConfig",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "fluentd"
+  },
+  "spec": {
+    "template": { 
+      "metadata": {
+        "labels": {
+          "name": "fluentd"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "name": "fluentd",
+            "image": "pb82/fluentd-prometheus:latest",
+            "ports": [
+              {
+                "containerPort": 24231,
+                "name": "metrics-port"
+              },
+              {
+                "containerPort": 9880,
+                "name": "push-port"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "replicas": 1
+  }
+}
